@@ -14,6 +14,10 @@ class Event extends Model
         'date_time',
     ];
 
+    protected $casts = [
+        'is_active' => 'boolean'
+    ];
+
     function bookings() {
         return $this->hasMany(EventBooking::class);
     }
