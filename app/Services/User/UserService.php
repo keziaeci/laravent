@@ -8,4 +8,5 @@ interface UserService extends BaseService{
 
     // Write something awesome :)
     function create($data);
+    
 }
