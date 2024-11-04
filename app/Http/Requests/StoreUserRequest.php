@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\DTOs\CreateUserDTO;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Hash;
 
 class StoreUserRequest extends FormRequest
 {
@@ -23,9 +25,18 @@ class StoreUserRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'username' => 'required|unique:users,name',
-            'email' => 'required|unique:users,email',
+            'username' => 'required|unique:users,username',
+            'email' => 'required|unique:users,email|email',
             'password' => 'required|confirmed|min:8'
         ];
+    }
+
+    function createUserDTO() : CreateUserDTO {
+        return new CreateUserDTO(
+            name: $this->name,
+            username: $this->username,
+            email: $this->email,
+            password: Hash::make($this->password)
+        );
     }
 }
