@@ -19,9 +19,9 @@ class CreateUserDTO
 
     function toArray() : array {
         return [
-            'name' => $this->name,
+            'name'     => $this->name,
             'username' => $this->username,
-            'email' => $this->email,
+            'email'    => $this->email,
             'password' => $this->password
         ];
     }

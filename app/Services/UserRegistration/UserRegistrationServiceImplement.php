@@ -37,7 +37,7 @@ class UserRegistrationServiceImplement extends ServiceApi implements UserRegistr
       try {
         $user = $this->mainRepository->updateOrCreate($createUserDTO->toArray());
 
-        return $this->setMessage('User Registered Successfully!')
+        return $this->setMessage('User Registered Successfully.')
                     ->setCode(Response::HTTP_CREATED)
                     ->setData($user);
 
