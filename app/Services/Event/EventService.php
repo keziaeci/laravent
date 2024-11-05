@@ -11,4 +11,6 @@ interface EventService extends BaseService{
     // Write something awesome :)
     function createEvent(CreateEventDTO $createEventDTO);
     function getAllEvent(GetEventsFilterDTO $params);
+    function find($id);
+    function findOrFail($id);
 }

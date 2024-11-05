@@ -36,7 +36,6 @@ class EventServiceImplement extends ServiceApi implements EventService{
 
     function getAllEvent(\App\DTOs\GetEventsFilterDTO $params) {
       try {
-        dd($params);
         $events = $this->mainRepository->getAll(
           orderBy: $params->order_by,
           orderDirection: $params->order_direction,
@@ -44,7 +43,7 @@ class EventServiceImplement extends ServiceApi implements EventService{
           search: $params->search
         );
 
-        return $this->setMessage('Events Retrieved Successfully.')
+        return $this->setMessage('Events retrieved successfully.')
                     ->setCode(Response::HTTP_OK)
                     ->setData($events);
       } catch (\Exception $e) {
@@ -57,12 +56,36 @@ class EventServiceImplement extends ServiceApi implements EventService{
       try {
         $event = $this->mainRepository->createEvent($createEventDTO->toArray());
         
-        return $this->setMessage('Event Created Successfully.')
+        return $this->setMessage('Event created successfully.')
                     ->setCode(Response::HTTP_CREATED)
                     ->setData($event);
       } catch (\Exception $e) {
         return $this->exceptionResponse($e);
       }
 
+    }
+
+    function find($id) {
+      try {
+        $event = $this->mainRepository->find($id);
+
+        return $this->setMessage('Event retrieved successfully.')
+                    ->setCode(Response::HTTP_OK)
+                    ->setData($event);
+      } catch (\Exception $e) {
+        return $this->exceptionResponse($e);
+      }
+    }
+    
+    function findOrFail($id) {
+      try {
+        $event = $this->mainRepository->findOrFail($id);
+  
+        return $this->setMessage('Event retrieved successfully.')
+                    ->setCode(Response::HTTP_OK)
+                    ->setData($event);
+      } catch (\Exception $e) {
+        return $this->exceptionResponse($e);
+      }
     }
 }

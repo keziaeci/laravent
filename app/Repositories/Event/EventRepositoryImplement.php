@@ -40,4 +40,9 @@ class EventRepositoryImplement extends Eloquent implements EventRepository{
             ->paginate($paginate);
     }
 
+    function get(int $id) {
+        return $this->model->find($id);
+    }
+
+    
 }

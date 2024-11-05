@@ -32,9 +32,9 @@ class GetEventsRequest extends FormRequest
 
     function getEventsFilterDTO() : GetEventsFilterDTO {
         return new GetEventsFilterDTO(
-            order_by: $this->order_by,
-            order_direction: $this->order_direction,
-            per_page: $this->per_page,
+            order_by: $this->order_by ?? 'created_at',
+            order_direction: $this->order_direction ?? 'desc',
+            per_page: $this->per_page ?? 10,
             search: $this->search,
         );
     }

@@ -15,4 +15,6 @@ interface EventRepository extends Repository{
     );
     
     function createEvent(array $data);
+
+    // function get(int $id);
 }
